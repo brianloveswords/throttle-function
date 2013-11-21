@@ -10,7 +10,6 @@ function throttle(fn, opts) {
   var timer;
 
   var msBetweenCalls = Math.ceil((window / limit) * 1000)
-  if (!exact) msBetweenCalls += 10
 
   if (isNaN(msBetweenCalls))
     throw new Error('opts.window and opts.limit must both be numbers')
