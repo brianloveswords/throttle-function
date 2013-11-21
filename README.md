@@ -1,5 +1,4 @@
-# throttle-function
-[![Build Status](https://secure.travis-ci.org/brianloveswords/throttle-function.png?branch=master)](http://travis-ci.org/brianloveswords/throttle-function)
+# throttle-function [![Build Status](https://secure.travis-ci.org/brianloveswords/throttle-function.png?branch=master)](http://travis-ci.org/brianloveswords/throttle-function)
 
 Takes a function, returns a function that will can only be called a certain amount of times per second.
 
