@@ -31,7 +31,6 @@ test('throttling', function (t) {
   ]
 
   var waiting = ops.length
-
   console.dir(ops)
 
   function proceed() {
