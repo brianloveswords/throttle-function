@@ -17,7 +17,8 @@ test('throttling', function (t) {
     getDate(function _first(date) {
       first = date;
       console.log('called first', first)
-      proceed() }),
+      proceed()
+    }),
     getDate(function _second(date) {
       second = date;
       console.log('called second', second)
@@ -35,10 +36,6 @@ test('throttling', function (t) {
 
   function proceed() {
     if (--waiting > 0) return
-
-    console.dir(first)
-    console.dir(second)
-    console.dir(third)
 
     const diff1 = second - first
     const diff2 = third - second

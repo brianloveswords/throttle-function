@@ -9,7 +9,7 @@ function throttle(fn, opts) {
 
   var timer;
 
-  var msBetweenCalls = ((window / limit) * 1000)
+  var msBetweenCalls = Math.ceil((window / limit) * 1000)
   if (!exact) msBetweenCalls += 10
 
   if (isNaN(msBetweenCalls))
