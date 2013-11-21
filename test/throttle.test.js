@@ -4,7 +4,7 @@ const test = require('tap').test
 test('throttling', function (t) {
   var first, second, third
 
-  const opts = { window: 1, limit: 10 }
+  const opts = { window: 1, limit: 3 }
   const getDate = throttle(function getDate(callback) {
     process.nextTick(function () { return callback(Date.now()) })
   }, opts)
