@@ -1,6 +1,6 @@
 {
   "name": "throttle-function",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Takes a function, returns a function that will can only be called a certain amount of times per second.",
   "main": "index.js",
   "directories": {
