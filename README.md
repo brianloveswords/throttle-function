@@ -6,7 +6,6 @@ Takes a function, returns a function that will can only be called a certain amou
 
 ```bash
 $ npm install throttle-function
-$ npm test throttle-function
 ```
 
 ## Usage
@@ -15,11 +14,14 @@ $ npm test throttle-function
 const throttle = require('throttle-function')
 const api = require('./api')
 
-const getWhatever = throttle(api.getWhatever, {
-  // call a maximum of 180 times per 15 minute window
-  window: 15 * 60,
+// call a maximum of 180 times per 15 minute window
+var getWhatever = throttle(api.getWhatever, {
+  window: 15 * 60, // window is in seconds
   limit: 180
 })
+
+// you can also use straight up milliseconds
+getWhatever = throttle(api.getWhatever, 5000)
 
 // this will fire off every 5 seconds instead of immediately
 getWhatever()

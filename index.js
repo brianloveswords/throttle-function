@@ -2,17 +2,29 @@ module.exports = throttle
 
 function throttle(fn, opts) {
   opts = opts || {}
+  var timer
   var queue = []
-  const window = opts.window || 1
-  const limit = opts.limit || 1
-  const exact = opts.exact || false
+  const errMsg = 'Must pass options or milliseconds as second argument'
+  if (!opts)
+    throw new Error(errMsg)
 
-  var timer;
+  var msBetweenCalls
 
-  var msBetweenCalls = Math.ceil((window / limit) * 1000)
+  if (typeof opts == 'string')
+    msBetweenCalls = Number(opts)
+
+  else if (typeof opts == 'number')
+    msBetweenCalls = opts
+
+  else {
+    const window = opts.window || 1
+    const limit = opts.limit || 1
+    const exact = opts.exact || false
+    msBetweenCalls = Math.ceil((window / limit) * 1000)
+  }
 
   if (isNaN(msBetweenCalls))
-    throw new Error('opts.window and opts.limit must both be numbers')
+    throw new Error(errMsg)
 
   function enqueue(args) {
     return queue.push(args)

@@ -46,3 +46,37 @@ test('throttling', function (t) {
     t.end()
   }
 })
+
+test('throttling, straight up milliseconds', function (t) {
+  var first, second
+
+  const getDate = throttle(function getDate(callback) {
+    process.nextTick(function () { return callback(Date.now()) })
+  }, 300)
+
+  const ops = [
+    getDate(function _first(date) {
+      first = date;
+      console.log('called first', first)
+      proceed()
+    }),
+    getDate(function _second(date) {
+      second = date;
+      console.log('called second', second)
+      proceed()
+    }),
+  ]
+
+  var waiting = ops.length
+  console.dir(ops)
+
+  function proceed() {
+    if (--waiting > 0) return
+
+    const diff = second - first
+
+    t.notEqual(first, second, 'should not be the same')
+    t.ok(diff >= 300, 'diff should be at least 300 ms')
+    t.end()
+  }
+})
