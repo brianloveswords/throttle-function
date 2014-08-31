@@ -4,7 +4,7 @@ function throttle(fn, opts) {
   opts = opts || {}
   var timer
   var queue = []
-  const errMsg = 'Must pass options or milliseconds as second argument'
+  var errMsg = 'Must pass options or milliseconds as second argument'
   if (!opts)
     throw new Error(errMsg)
 
@@ -17,9 +17,9 @@ function throttle(fn, opts) {
     msBetweenCalls = opts
 
   else {
-    const window = opts.window || 1
-    const limit = opts.limit || 1
-    const exact = opts.exact || false
+    var window = opts.window || 1
+    var limit = opts.limit || 1
+    var exact = opts.exact || false
     msBetweenCalls = Math.ceil((window / limit) * 1000)
   }
 
@@ -41,21 +41,21 @@ function throttle(fn, opts) {
   }
 
   function runQueue() {
-    const args = dequeue()
+    var args = dequeue()
 
     if (queue.length == 0 || !args) {
       clearInterval(timer)
       timer = null
     }
 
-    const result = fn.apply(null, args)
+    var result = fn.apply(null, args)
     return result
   }
 
-  const throttled = function () {
-    const args = [].slice.call(arguments)
-    const position = enqueue(args)
-    const timer = kickQueue()
+  var throttled = function () {
+    var args = [].slice.call(arguments)
+    var position = enqueue(args)
+    var timer = kickQueue()
 
     return {
       position: position,
